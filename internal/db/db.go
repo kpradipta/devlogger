@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -17,5 +18,6 @@ func Init() error {
 	if err != nil {
 		return fmt.Errorf("failed to connect to DB: %w", err)
 	}
+	log.Println("Connected to db")
 	return nil
 }
