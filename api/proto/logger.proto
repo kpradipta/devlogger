@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package logger;
+
+option go_package = "api/proto/logger";
+
+// Message sent from clients (e.g. other services or frontends)
+message LogEntry {
+  string service = 1;
+  string level = 2;      // e.g., INFO, WARN, ERROR
+  string message = 3;
+  string timestamp = 4;
+}
+
+// Request to query logs
+message QueryRequest {
+  string service = 1;
+  string level = 2;
+}
+
+// List of logs returned
+message LogList {
+  repeated LogEntry entries = 1;
+}
+
+// Service definition
+service LogService {
+  rpc SendLog(LogEntry) returns (Empty);
+  rpc GetLogs(QueryRequest) returns (LogList);
+}
+
+message Empty {}

@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'devlogger'
+    static_configs:
+      - targets: ['devlogger:50051']
